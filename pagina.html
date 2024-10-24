@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Quiero</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+        }
+        .heart {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url('https://img.icons8.com/ios-filled/100/ffffff/heart.png') no-repeat center/contain;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translatey(0); }
+            50% { transform: translatey(-20px); }
+            100% { transform: translatey(0); }
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" src="cancion.mp3" loop></audio>
+    
+    <div>
+        <h1>Te amo mucho, mi princesita bonita</h1>
+        <p>Quiero vivir muchos más momentos a tu lado, hermosa.</p>
+        <p>Cada instante contigo es único y me encanta.</p>
+        <p>Gracias por iluminar mi vida con tu amor.</p>
+        <button id="playButton" onclick="playMusic()">Reproducir Música</button>
+    </div>
+
+    <div class="heart" style="top: 20px; left: 50px;"></div>
+    <div class="heart" style="top: 100px; right: 50px;"></div>
+    <div class="heart" style="bottom: 50px; left: 200px;"></div>
+    <div class="heart" style="bottom: 100px; right: 100px;"></div>
+
+    <script>
+        let musicPlayed = false; // Para asegurarse de que la música no se reproduzca múltiples veces
+
+        function playMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.muted = false; // Desmutear
+            audio.play().catch(error => {
+                console.log("No se pudo reproducir automáticamente:", error);
+            });
+            musicPlayed = true; // Marca que la música ha sido reproducida
+        }
+
+        // Activa la música al mover el mouse, si no se ha reproducido ya
+        document.addEventListener('mousemove', () => {
+            if (!musicPlayed) {
+                playMusic();
+            }
+        });
+    </script>
+</body>
+</html>

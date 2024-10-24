@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Mes Juntos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9ebc, #ff6f91);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .heart, .flower {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            z-index: -1;
+        }
+        .heart {
+            background: url('https://img.icons8.com/ios-filled/100/ffffff/heart.png') no-repeat center/contain;
+        }
+        .flower {
+            background: url('https://img.icons8.com/ios-filled/100/ffffff/flower.png') no-repeat center/contain;
+        }
+        #flower1 { top: 20px; left: 20px; }
+        #flower2 { bottom: 20px; right: 20px; }
+        #heart1 { top: 50px; right: 50px; }
+        #heart2 { bottom: 100px; left: 100px; }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" src="cancion.mp3" autoplay loop muted></audio>
+    
+    <div>
+        <h1>Nuestro primer Mes Juntos!</h1>
+        <p>Gracias ser como sos, por cada momento compartido y por amarme tanto. Sos mi persona favorita.</p>
+        <p>Queres vivir mas momentos juntos?</p>
+        <button id="yesButton" onclick="window.location.href='pagina.html'">Sí, quiero más momentos</button>
+        <button id="noButton" onclick="moveButton()">No :(</button>
+    </div>
+
+    <div class="flower" id="flower1"></div>
+    <div class="flower" id="flower2"></div>
+    <div class="heart" id="heart1"></div>
+    <div class="heart" id="heart2"></div>
+
+    <script>
+        function playMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.muted = false; // Desactivar el silencio
+            audio.play().catch(error => {
+                console.log("No se pudo reproducir automáticamente:", error);
+            });
+        }
+
+        // Intenta reproducir la música al cargar la página
+        window.onload = function() {
+            const audio = document.getElementById('backgroundMusic');
+            audio.play().catch(error => {
+                console.log("No se pudo reproducir automáticamente:", error);
+            });
+        };
+
+        function moveButton() {
+            const button = document.getElementById('noButton');
+            const x = Math.random() * (window.innerWidth - button.offsetWidth);
+            const y = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.position = 'absolute';
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
